@@ -62,6 +62,6 @@ if [ -n "$BUILD_THUMBPRINT" ] ; then
 fi
 echo "ro.build.characteristics=$TARGET_AAPT_CHARACTERISTICS"
 
-echo "ro.cm.device=$CM_DEVICE"
+echo "ro.jos.device=$JOS_DEVICE"
 
 echo "# end build properties"

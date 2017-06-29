@@ -180,12 +180,8 @@ include $(BUILD_SYSTEM)/product.mk
 include $(BUILD_SYSTEM)/device.mk
 
 # A CM build needs only the CM product makefiles.
-ifneq ($(CM_BUILD),)
-  all_product_configs := $(shell find device -path "*/$(CM_BUILD)/lineage.mk")
-  ifeq ($(all_product_configs),)
-    # Fall back to cm.mk
-    all_product_configs := $(shell find device -path "*/$(CM_BUILD)/cm.mk")
-  endif
+ifneq ($(JOS_BUILD),)
+  all_product_configs := $(shell find device -path "*/$(JOS_BUILD)/jos.mk")
 else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
   # An unbundled app build needs only the core product makefiles.
@@ -196,9 +192,9 @@ else
     # files in the tree.
     all_product_configs := $(get-all-product-makefiles)
   endif # TARGET_BUILD_APPS
-endif # CM_BUILD
+endif # JOS_BUILD
 
-ifeq ($(CM_BUILD),)
+ifeq ($(JOS_BUILD),)
 # Find the product config makefile for the current product.
 # all_product_configs consists items like:
 # <product_name>:<path_to_the_product_makefile>
